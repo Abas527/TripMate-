@@ -2,4 +2,4 @@
 workflow of this app
 
 1.UI/UX design
-
+2.Fastapi setup
