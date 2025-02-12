@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Mate - Dynamic Colors</title>
+    <style>
+        :root {
+            --current-color: #FFB6C1;
+            --transition-time: 0.5s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            transition: all var(--transition-time) ease;
+        }
+
+        body {
+            background-color: #f9f9f9;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--current-color);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid black;
+        }
+
+        .btn.primary {
+            background-color: var(--current-color);
+            color: black;
+        }
+
+        .btn.secondary {
+            background-color: transparent;
+            color: black;
+        }
+
+        .hero {
+            height: 80vh;
+            background-color: var(--current-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--current-color);
+        }
+
+        .cta-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">TRIPMATE</div>
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#login">LOGIN</a>
+            <a href="#signup" class="btn primary">SIGN UP</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>DISCOVER NEPAL</h1>
+            <p>LIKE NEVER BEFORE</p>
+            <div class="cta-buttons">
+                <a href="#explore" class="btn primary">EXPLORE NOW</a>
+                <a href="#learnmore" class="btn secondary">LEARN MORE</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const colors = [
+            '#FFB6C1',  // Light Pink
+            '#87CEFA',  // Light Sky Blue
+            '#98FB98',  // Pale Green
+            '#DDA0DD',  // Plum
+            '#FFDAB9',  // Peach Puff
+            '#E0FFFF',  // Light Cyan
+            '#FAFAD2',  // Light Goldenrod Yellow
+            '#FFA07A',  // Light Salmon
+            '#20B2AA',  // Light Sea Green
+            '#B0E0E6'   // Powder Blue
+        ];
+
+        function changeColor() {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.documentElement.style.setProperty('--current-color', randomColor);
+        }
+
+        // Change color every 30 seconds
+        setInterval(changeColor, 30000);
+        
+        // Initial color change
+        changeColor();
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
