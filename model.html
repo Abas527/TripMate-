@@ -3,196 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip Mate - Dynamic Colors</title>
+    <title>Trip Mate - Auth Pages</title>
     <style>
-        :root {
-            --current-color: #FFB6C1;
-            --transition-time: 0.5s;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-            transition: all var(--transition-time) ease;
-        }
-
-        body {
-            background-color: #f9f9f9;
-        }
-
-        .navbar {
-            background-color: #ffffff;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: var(--current-color);
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            border: 2px solid black;
-        }
-
-        .btn.primary {
-            background-color: var(--current-color);
-            color: black;
-        }
-
-        .btn.secondary {
-            background-color: transparent;
-            color: black;
-        }
-
-        .hero {
-            height: 80vh;
-            background-color: var(--current-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .hero-content {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px;
+        /* Previous styles remain same, add these new styles */
+        
+        .auth-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--current-color);
-        }
-
-        .cta-buttons {
-            margin-top: 30px;
+        .user-type-selector {
             display: flex;
             gap: 20px;
-            justify-content: center;
+            margin-bottom: 30px;
         }
 
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
+        .user-type-btn {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid var(--current-color);
+            border-radius: 10px;
+            background: transparent;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .user-type-btn.active {
+            background-color: var(--current-color);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--current-color);
+            outline: none;
+        }
+
+        .photo-upload {
+            border: 2px dashed #ddd;
+            padding: 20px;
+            text-align: center;
             cursor: pointer;
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: white;
-                flex-direction: column;
-                padding: 20px;
-                gap: 15px;
-            }
+        .photo-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 15px auto;
+            display: none;
+        }
 
-            .nav-links.active {
-                display: flex;
-            }
+        .language-select {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
 
-            .mobile-menu-btn {
-                display: block;
-            }
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-            .hero h1 {
-                font-size: 2rem;
-            }
+        .toggle-auth {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-            .hero-content {
-                padding: 20px;
-            }
+        .toggle-auth a {
+            color: var(--current-color);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">TRIPMATE</div>
-        <div class="nav-links">
-            <a href="#home">HOME</a>
-            <a href="#about">ABOUT</a>
-            <a href="#login">LOGIN</a>
-            <a href="#signup" class="btn primary">SIGN UP</a>
-        </div>
-        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-    </nav>
+    <!-- Previous navbar and hero section -->
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>DISCOVER NEPAL</h1>
-            <p>LIKE NEVER BEFORE</p>
-            <div class="cta-buttons">
-                <a href="#explore" class="btn primary">EXPLORE NOW</a>
-                <a href="#learnmore" class="btn secondary">LEARN MORE</a>
+    <!-- Auth Pages -->
+    <div class="auth-container" id="authContainer">
+        <!-- Login Form -->
+        <div id="loginForm">
+            <h2>Login to TripMate</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" required>
+                </div>
+                <button type="submit" class="btn primary">Login</button>
+            </form>
+            <div class="toggle-auth">
+                Don't have an account? <a onclick="showSignup()">Sign Up</a>
             </div>
         </div>
-    </section>
+
+        <!-- Signup Form -->
+        <div id="signupForm" class="hidden">
+            <h2>Create Account</h2>
+            <div class="user-type-selector">
+                <button type="button" class="user-type-btn active" onclick="selectUserType('tourist')">Tourist</button>
+                <button type="button" class="user-type-btn" onclick="selectUserType('guide')">Guide</button>
+            </div>
+
+            <!-- Tourist Signup -->
+            <form id="touristSignup" onsubmit="handleSignup(event, 'tourist')">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Nationality</label>
+                    <select required>
+                        <option value="">Select Nationality</option>
+                        <!-- Add more options -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <div class="photo-upload" onclick="document.getElementById('touristPhoto').click()">
+                        Upload Profile Picture
+                        <input type="file" id="touristPhoto" accept="image/*" hidden 
+                               onchange="previewImage(this, 'touristPreview')">
+                        <img class="photo-preview" id="touristPreview">
+                    </div>
+                </div>
+                <button type="submit" class="btn primary">Sign Up as Tourist</button>
+            </form>
+
+            <!-- Guide Signup -->
+            <form id="guideSignup" class="hidden" onsubmit="handleSignup(event, 'guide')">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Nationality</label>
+                    <select required>
+                        <option value="">Select Nationality</option>
+                        <!-- Add more options -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Languages Known</label>
+                    <div class="language-select">
+                        <!-- Add more languages -->
+                        <label class="language-option">
+                            <input type="checkbox"> English
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Experience (in years)</label>
+                    <input type="number" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>Create Password</label>
+                    <input type="password" required>
+                </div>
+                <div class="form-group">
+                    <label>Retype Password</label>
+                    <input type="password" required>
+                </div>
+                <div class="form-group">
+                    <div class="photo-upload" onclick="document.getElementById('guidePhoto').click()">
+                        Upload Profile Picture
+                        <input type="file" id="guidePhoto" accept="image/*" hidden 
+                               onchange="previewImage(this, 'guidePreview')">
+                        <img class="photo-preview" id="guidePreview">
+                    </div>
+                </div>
+                <button type="submit" class="btn primary">Sign Up as Guide</button>
+            </form>
+
+            <div class="toggle-auth">
+                Already have an account? <a onclick="showLogin()">Login</a>
+            </div>
+        </div>
+    </div>
 
     <script>
-        const colors = [
-            '#FFB6C1',  // Light Pink
-            '#87CEFA',  // Light Sky Blue
-            '#98FB98',  // Pale Green
-            '#DDA0DD',  // Plum
-            '#FFDAB9',  // Peach Puff
-            '#E0FFFF',  // Light Cyan
-            '#FAFAD2',  // Light Goldenrod Yellow
-            '#FFA07A',  // Light Salmon
-            '#20B2AA',  // Light Sea Green
-            '#B0E0E6'   // Powder Blue
-        ];
+        // Previous JavaScript code remains same
 
-        function changeColor() {
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            document.documentElement.style.setProperty('--current-color', randomColor);
+        // Auth Functions
+        function showSignup() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupForm').classList.remove('hidden');
+            selectUserType('tourist');
         }
 
-        // Change color every 30 seconds
-        setInterval(changeColor, 30000);
-        
-        // Initial color change
-        changeColor();
+        function showLogin() {
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        }
 
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
+        function selectUserType(type) {
+            document.querySelectorAll('.user-type-btn').forEach(btn => 
+                btn.classList.remove('active'));
+            
+            document.querySelectorAll(`.user-type-btn`)[type === 'tourist' ? 0 : 1]
+                .classList.add('active');
+
+            document.getElementById('touristSignup').classList.toggle('hidden', type !== 'tourist');
+            document.getElementById('guideSignup').classList.toggle('hidden', type !== 'guide');
+        }
+
+        function previewImage(input, previewId) {
+            const file = input.files[0];
+            const preview = document.getElementById(previewId);
+            if (file) {
+                preview.style.display = 'block';
+                preview.src = URL.createObjectURL(file);
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            // Add login logic
+        }
+
+        function handleSignup(e, type) {
+            e.preventDefault();
+            const form = e.target;
+            
+            // Validate passwords match for guide
+            if (type === 'guide') {
+                const password = form.querySelector('input[type="password"]').value;
+                const confirmPassword = form.querySelectorAll('input[type="password"]')[1].value;
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+            }
+
+            // Validate at least one language selected for guide
+            if (type === 'guide') {
+                const checkedLanguages = form.querySelectorAll('input[type="checkbox"]:checked');
+                if (checkedLanguages.length === 0) {
+                    alert('Please select at least one language');
+                    return;
+                }
+            }
+
+            // Submit form
+            console.log(`${type} signup data:`, new FormData(form));
         }
     </script>
 </body>
